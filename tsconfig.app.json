@@ -24,9 +24,8 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
-      "@assets/*": ["src/assets/*"],
-      "@providers/*": ["src/providers/*"],
-      "@utils/*": ["src/utils/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@services/*": ["src/services/*"]
     }
   },
   "include": ["src/**/*", "src/vite-env.d.ts"]

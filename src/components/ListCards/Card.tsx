@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CardProps {
   id: number;
   name: string;
@@ -6,9 +8,12 @@ interface CardProps {
 function Card({ id, name }: CardProps) {
   return (
     <div className="w-48 h-fit flex justify-center text-center p-7 rounded-3xl bg-white border border-solid border-gray-200">
-      <a href="/" className="flex flex-col items-center text-center gap-3">
+      <Link
+        to={`/details/${id}`}
+        className="flex flex-col items-center text-center gap-3"
+      >
         <img
-          src={`assets/images/pokemon/${id}.png`}
+          src={`/assets/images/pokemon/${id}.png`}
           alt={name}
           width={75}
           height={75}
@@ -19,7 +24,7 @@ function Card({ id, name }: CardProps) {
             {name}
           </h2>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

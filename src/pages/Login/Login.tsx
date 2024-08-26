@@ -24,7 +24,9 @@ function Login() {
             type="submit"
             name="bt-login"
             className="text-md bg-blue-700 text-white p-2 rounded-full"
-            onClick={() => console.log("Login")}
+            onClick={() => {
+              localStorage.setItem("token", "123456789");
+            }}
           >
             Login
           </button>

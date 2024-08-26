@@ -7,7 +7,7 @@ function Header() {
       <h1>
         <a href="/">
           <img
-            src="assets/images/logo.png"
+            src="/assets/images/logo.png"
             alt="Pokemon"
             width={150}
             height={100}

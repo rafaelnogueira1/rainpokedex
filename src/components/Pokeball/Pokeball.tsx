@@ -3,7 +3,7 @@ function Pokeball() {
     <div>
       <button type="button" onClick={() => {}}>
         <img
-          src="assets/images/pokeball.svg"
+          src="/assets/images/pokeball.svg"
           alt="See pokeball"
           width={35}
           height={45}
