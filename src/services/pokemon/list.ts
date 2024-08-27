@@ -15,10 +15,15 @@ export interface Pokemon {
   name: string;
 }
 
+export interface ListReturn {
+  pokemons: Pokemon[];
+  count: number;
+}
+
 export const listPokemons = async (
   limit = 10,
   offset = 0
-): Promise<Pokemon[]> => {
+): Promise<ListReturn> => {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/pokemon?limit=${limit}&offset=${offset}`
   );
@@ -35,5 +40,8 @@ export const listPokemons = async (
     };
   });
 
-  return pokemons;
+  return {
+    pokemons,
+    count: data.count,
+  };
 };

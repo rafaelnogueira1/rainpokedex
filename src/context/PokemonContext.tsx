@@ -1,10 +1,10 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { pokemon, type, ability, gender } from "@/services";
-import { Pokemon } from "@/services/pokemon";
+import { ListReturn } from "@/services/pokemon";
 
 interface PokemonContextProps {
-  pokemonsList: Pokemon[];
-  getPokemons: () => void;
+  pokemonsList: ListReturn;
+  getPokemons: (limit?: number, offset?: number) => void;
   onSelectType: (t: string) => void;
   onSelectAbility: (a: string) => void;
   onSelectGender: (a: string) => void;
@@ -17,11 +17,12 @@ export const PokemonProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [pokemonsList, setPokemonsList] = useState<Pokemon[]>([]);
+  const [pokemonsList, setPokemonsList] = useState<ListReturn>(
+    {} as ListReturn
+  );
 
-  const getPokemons = useCallback(async () => {
-    const response = await pokemon.listPokemons();
-
+  const getPokemons = useCallback(async (limit = 12, offset = 0) => {
+    const response = await pokemon.listPokemons(limit, offset);
     setPokemonsList(response);
   }, []);
 

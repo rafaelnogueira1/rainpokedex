@@ -1,4 +1,4 @@
-import { PokemonListResponse, Pokemon } from "../pokemon";
+import { PokemonListResponse, ListReturn } from "../pokemon";
 
 export interface GenderListResponse {
   id: number;
@@ -15,7 +15,7 @@ export const pokemonsByGender = async (
   gender: string,
   limit = 10,
   offset = 0
-): Promise<Pokemon[]> => {
+): Promise<ListReturn> => {
   const response = await fetch(
     `${
       import.meta.env.VITE_API_URL
@@ -34,5 +34,8 @@ export const pokemonsByGender = async (
     };
   });
 
-  return pokemons;
+  return {
+    pokemons,
+    count: 0,
+  };
 };

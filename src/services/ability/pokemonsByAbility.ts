@@ -1,4 +1,4 @@
-import { PokemonListResponse, Pokemon } from "../pokemon";
+import { PokemonListResponse, ListReturn } from "../pokemon";
 
 export interface AbilityListResponse {
   id: number;
@@ -16,7 +16,7 @@ export const pokemonByAbility = async (
   ability: string,
   limit = 10,
   offset = 0
-): Promise<Pokemon[]> => {
+): Promise<ListReturn> => {
   const response = await fetch(
     `${
       import.meta.env.VITE_API_URL
@@ -35,5 +35,8 @@ export const pokemonByAbility = async (
     };
   });
 
-  return pokemons;
+  return {
+    pokemons,
+    count: 0,
+  };
 };
