@@ -3,6 +3,7 @@ import { Home } from "@pages/Home";
 import { Login } from "@pages/Login";
 import { ErrorPage } from "@pages/ErrorPage";
 import { Details } from "@pages/Details";
+import { Pokeball } from "@pages/Pokeball";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/details/:id",
     element: <Details />,
+  },
+  {
+    path: "/pokeball",
+    element: <Pokeball />,
   },
 ]);
 

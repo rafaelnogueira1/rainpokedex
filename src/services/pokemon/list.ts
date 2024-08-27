@@ -1,26 +1,28 @@
-export interface PokemonsResponse {
+export interface PokemonsListResponse {
   count: number;
   next: string;
   previous: string;
-  results: PokemonResponse[];
+  results: PokemonListResponse[];
 }
 
-export interface PokemonResponse {
+export interface PokemonListResponse {
   url: string;
   name: string;
 }
 
-export interface Pokemons {
+export interface Pokemon {
   id: number;
-  url: string;
   name: string;
 }
 
-const listPokemons = async (limit = 10, offset = 0): Promise<Pokemons[]> => {
+export const listPokemons = async (
+  limit = 10,
+  offset = 0
+): Promise<Pokemon[]> => {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/pokemon?limit=${limit}&offset=${offset}`
   );
-  const data = (await response.json()) as PokemonsResponse;
+  const data = (await response.json()) as PokemonsListResponse;
 
   const pokemons = data.results.map((pokemon) => {
     const url = new URL(pokemon.url);
@@ -28,12 +30,10 @@ const listPokemons = async (limit = 10, offset = 0): Promise<Pokemons[]> => {
     const id = idMatch ? parseInt(idMatch[1], 10) : 0;
 
     return {
-      ...pokemon,
+      name: pokemon.name,
       id,
     };
   });
 
   return pokemons;
 };
-
-export default listPokemons;

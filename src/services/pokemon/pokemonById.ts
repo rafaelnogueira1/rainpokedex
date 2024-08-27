@@ -77,11 +77,9 @@ export interface Type {
   url: string;
 }
 
-const pokemonById = async (id: string): Promise<PokemonResponse> => {
+export const pokemonById = async (id: string): Promise<PokemonResponse> => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/pokemon/${id}`);
   const data = (await response.json()) as PokemonResponse;
 
   return data;
 };
-
-export default pokemonById;

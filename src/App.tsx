@@ -1,15 +1,5 @@
-import { Details } from "@pages/Details";
-import { Home } from "@pages/Home";
-import { Login } from "@pages/Login";
-
 function App() {
-  return (
-    <>
-      {/* <Home /> */}
-      {/* <Details /> */}
-      <Login />
-    </>
-  );
+  return <span>Pokedex</span>;
 }
 
 export default App;
