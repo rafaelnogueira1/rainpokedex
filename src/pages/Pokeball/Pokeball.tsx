@@ -1,8 +1,8 @@
-import { usePokeball } from "@/hooks";
 import { ListCards } from "@/components/ListCards";
+import { usePokeball } from "@/hooks";
 
 function Pokeball() {
-  const { pokeball, removeFromPokeball } = usePokeball();
+  const { removeFromPokeball, pokeball } = usePokeball();
 
   return (
     <main className="max-w-[1200px] mx-auto flex flex-col justify-between p-4 gap-8">

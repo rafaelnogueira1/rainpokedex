@@ -21,7 +21,7 @@ function SwitchPokeballButton({
   }
 
   return (
-    <Button.AddToPokeball {...pokemon}>
+    <Button.AddToPokeball pokemon={pokemon}>
       {addToPokeballText}
     </Button.AddToPokeball>
   );

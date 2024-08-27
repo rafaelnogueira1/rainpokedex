@@ -1,8 +1,12 @@
-import { useLocalStorage } from "@/hooks";
+import { useAuth, useLocalStorage } from "@/hooks";
 import { Pokemon } from "@/services/pokemon";
 import { pokemonAlreadyInPokeball } from "@/utils/pokemonAlreadyInPokeball";
-import { createContext, ReactNode, useCallback } from "react";
+import { createContext, ReactNode, useCallback, useEffect } from "react";
 
+interface PokeballDB {
+  userId: string;
+  pokeball: Pokemon[];
+}
 interface PokeballContextProps {
   pokeball: Pokemon[];
   addToPokeball: (pokemon: Pokemon) => void;
@@ -11,33 +15,54 @@ interface PokeballContextProps {
 
 export const PokeballContext = createContext({} as PokeballContextProps);
 
-const storage = JSON.parse(localStorage.getItem("pokeball")!);
+// const storage: PokeballDB[] = JSON.parse(localStorage.getItem("pokeball")!);
 
 export const PokeballProvider = ({ children }: { children: ReactNode }) => {
+  const { user } = useAuth();
   const [pokeball, setPokeball] = useLocalStorage<Pokemon[] | []>(
-    "pokeball",
-    storage || []
+    `pokeball-${user?.id}`,
+    JSON.parse(localStorage.getItem(`pokeball-${user?.id}`)!) || []
   );
 
   const addToPokeball = useCallback(
     (pokemon: Pokemon) => {
+      console.log("pokeball", pokeball);
       if (pokemonAlreadyInPokeball(pokeball, pokemon.id)) {
         console.info("Pokemon already in pokeball");
         return;
       }
 
-      setPokeball((prevPokeball) => [...prevPokeball, pokemon]);
+      setPokeball([...pokeball, pokemon]);
 
-      if (pokeball?.length) {
-        console.log("Pokemon added to pokeball", pokeball);
-        localStorage.setItem(
-          "pokeball",
-          JSON.stringify([...pokeball, pokemon])
-        );
-      } else {
-        console.log("First pokemon in pokeball");
-        localStorage.setItem("pokeball", JSON.stringify([pokemon]));
-      }
+      // const userIndex = pokeball.findIndex((p) => p.userId === user?.id);
+      // if (userIndex === -1) {
+      //   const newPokebola = {
+      //     userId: user?.id,
+      //     pokeball: [pokemon],
+      //   };
+      //   setPokeball([...pokeball, newPokebola]);
+      //   console.log("Pokeball created", pokeball);
+      // } else {
+      //   if (
+      //     pokemonAlreadyInPokeball(pokeball[userIndex].pokeball, pokemon.id)
+      //   ) {
+      //     console.info("Pokemon already in pokeball");
+      //     return;
+      //   }
+      //   pokeball[userIndex].pokeball.push(pokemon);
+      //   setPokeball(pokeball);
+      //   console.log("Pokeball updated", pokeball);
+      // }
+      // if (pokeball?.length) {
+      //   console.log("Pokemon added to pokeball", pokeball);
+      //   localStorage.setItem(
+      //     "pokeball",
+      //     JSON.stringify([...pokeball, pokemon])
+      //   );
+      // } else {
+      //   console.log("First pokemon in pokeball");
+      //   localStorage.setItem("pokeball", JSON.stringify([pokemon]));
+      // }
     },
     [pokeball, setPokeball]
   );

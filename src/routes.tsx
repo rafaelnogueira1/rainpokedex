@@ -1,17 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "@/pages/Home";
 import { Login } from "@/pages/Login";
-import { ErrorPage } from "@/pages/ErrorPage";
 import { Details } from "@/pages/Details";
 import { Pokeball } from "@/pages/Pokeball";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Root from "./pages/Root/Root";
+import Register from "./pages/Register/Register";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} errorElement={<ErrorPage />} />
-      <Route element={<Root />} errorElement={<ErrorPage />}>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route element={<Root />}>
         <Route
           path="/"
           element={

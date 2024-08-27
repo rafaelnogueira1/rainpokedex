@@ -2,8 +2,8 @@ import { useAuth } from "@/hooks";
 import { SyntheticEvent, useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
 
-function Login() {
-  const { login, user } = useAuth();
+function Register() {
+  const { register, user } = useAuth();
   const loginForm = useRef<HTMLFormElement>(null);
 
   if (user) {
@@ -18,7 +18,7 @@ function Login() {
       password: HTMLInputElement;
     };
 
-    login({
+    register({
       email: email.value,
       password: password.value,
     });
@@ -29,7 +29,7 @@ function Login() {
       <div className="flex flex-col gap-4 w-96">
         <div className="flex flex-col items-center justify-center gap-4">
           <img src="assets/images/logo.png" alt="" width={200} height={150} />
-          <h1 className="text-3xl text-blue-800 font-bold">Login</h1>
+          <h1 className="text-3xl text-blue-800 font-bold">Register</h1>
         </div>
         <div className="mt-5">
           <form
@@ -62,7 +62,7 @@ function Login() {
             </button>
           </form>
           <div className="text-center mt-6 underline">
-            <Link to="/register">Create an account</Link>
+            <Link to="/login">Login</Link>
           </div>
         </div>
       </div>
@@ -70,4 +70,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
