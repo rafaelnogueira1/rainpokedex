@@ -1,16 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
-import router from "./routes.tsx";
-import { PokeballProvider, PokemonProvider } from "@/context";
+import App from "./App.tsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PokemonProvider>
-      <PokeballProvider>
-        <RouterProvider router={router} />
-      </PokeballProvider>
-    </PokemonProvider>
+    <App />
   </StrictMode>
 );

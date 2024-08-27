@@ -5,7 +5,7 @@ export const usePokeball = () => {
   const context = useContext(PokeballContext);
 
   if (!context) {
-    throw new Error("usePokeball must be used with PokeballContext");
+    throw new Error("usePokeball must be used within PokeballContext");
   }
 
   return context;

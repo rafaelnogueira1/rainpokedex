@@ -1,2 +1,7 @@
-export { default as Navigation } from "./Navigation";
-export { default as NavigationItem } from "./NavigationItem";
+import { default as NavigationContainer } from "./NavigationContainer";
+import { default as NavigationItem } from "./NavigationItem";
+
+export const Navigation = {
+  Container: NavigationContainer,
+  Item: NavigationItem,
+};
