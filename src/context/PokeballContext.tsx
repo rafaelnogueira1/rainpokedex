@@ -1,5 +1,7 @@
+import { useLocalStorage } from "@/hooks";
 import { Pokemon } from "@/services/pokemon";
-import { createContext, ReactNode, useCallback, useState } from "react";
+import { pokemonAlreadyInPokeball } from "@/utils/pokemonAlreadyInPokeball";
+import { createContext, ReactNode, useCallback } from "react";
 
 interface PokeballContextProps {
   pokeball: Pokemon[];
@@ -12,27 +14,42 @@ export const PokeballContext = createContext({} as PokeballContextProps);
 const storage = JSON.parse(localStorage.getItem("pokeball")!);
 
 export const PokeballProvider = ({ children }: { children: ReactNode }) => {
-  const [pokeball, setPokeball] = useState<Pokemon[]>(() => {
-    // const storage = JSON.parse(localStorage.getItem("pokeball")!);
-    return storage || [];
-  });
+  const [pokeball, setPokeball] = useLocalStorage<Pokemon[] | []>(
+    "pokeball",
+    storage || []
+  );
 
-  const addToPokeball = useCallback((pokemon: Pokemon) => {
-    setPokeball((prevPokeball) => [...prevPokeball, pokemon]);
+  const addToPokeball = useCallback(
+    (pokemon: Pokemon) => {
+      if (pokemonAlreadyInPokeball(pokeball, pokemon.id)) {
+        console.info("Pokemon already in pokeball");
+        return;
+      }
 
-    if (storage?.length) {
-      const newStorage = [...storage, pokemon];
-      localStorage.setItem("pokeball", JSON.stringify(newStorage));
-    } else {
-      localStorage.setItem("pokeball", JSON.stringify([pokemon]));
-    }
-  }, []);
+      setPokeball((prevPokeball) => [...prevPokeball, pokemon]);
 
-  const removeFromPokeball = useCallback((id: number) => {
-    setPokeball((prevPokeball) =>
-      prevPokeball.filter((pokemon) => pokemon.id !== id)
-    );
-  }, []);
+      if (pokeball?.length) {
+        console.log("Pokemon added to pokeball", pokeball);
+        localStorage.setItem(
+          "pokeball",
+          JSON.stringify([...pokeball, pokemon])
+        );
+      } else {
+        console.log("First pokemon in pokeball");
+        localStorage.setItem("pokeball", JSON.stringify([pokemon]));
+      }
+    },
+    [pokeball, setPokeball]
+  );
+
+  const removeFromPokeball = useCallback(
+    (id: number) => {
+      const newPokeball = pokeball.filter((pokemon) => pokemon.id !== id);
+
+      setPokeball(newPokeball);
+    },
+    [setPokeball, pokeball]
+  );
 
   const value = {
     pokeball,

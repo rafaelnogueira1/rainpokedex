@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks";
-import { Navigation } from "@components/Navigation";
-import { Pokeball } from "@components/Pokeball";
+import { Navigation } from "@/components/Navigation";
+import { Pokeball } from "@/components/Pokeball";
 
 function Header() {
   const { logout } = useAuth();
@@ -19,18 +19,16 @@ function Header() {
       </h1>
       <Navigation.Container>
         <Navigation.Item href="/">Home</Navigation.Item>
-      </Navigation.Container>
-      <div className="flex gap-5">
         <button
           type="button"
           onClick={logout}
           name="logout"
-          className="font-navigation uppercase text-sm text-blue-900"
+          className="font-navigation uppercase text-md text-blue-900"
         >
           Logout
         </button>
-        <Pokeball />
-      </div>
+      </Navigation.Container>
+      <Pokeball />
     </header>
   );
 }

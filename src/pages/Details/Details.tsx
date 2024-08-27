@@ -1,16 +1,15 @@
 import { useParams } from "react-router-dom";
 
-import { Header } from "@components/Header";
-import { Characteristics } from "@components/Characteristics";
-import { PokemonBio } from "@components/PokemonBio";
-import { Search } from "@components/Search";
-import { useAsyncFunction } from "@hooks/useFetchData";
+import { Header } from "@/components/Header";
+import { Characteristics } from "@/components/Characteristics";
+import { PokemonBio } from "@/components/PokemonBio";
+import { Search } from "@/components/Search";
+import { useAsyncFunction } from "@/hooks/useFetchData";
 import { pokemon } from "@/services";
-import { usePokeball } from "@/hooks";
+import { Button } from "@/components/Button";
 
 function Details() {
   const { id } = useParams() as { id: string };
-  const { addToPokeball } = usePokeball();
 
   const { data, isLoading, hasError } = useAsyncFunction(pokemon.pokemonById, [
     id,
@@ -43,7 +42,7 @@ function Details() {
         <Header />
         <main className="max-w-[1200px] mx-auto flex flex-col p-4 gap-8">
           <Search />
-          <div className="w-full flex gap-8 justify-between">
+          <div className="w-full flex flex-col md:flex-row gap-8 justify-between">
             <div>
               <span className="font-bold text-sm text-gray-500">№ {id}</span>
               <h2 className="font-secondary text-3xl text-gray-800 uppercase">
@@ -67,19 +66,11 @@ function Details() {
                   <strong>Experience:</strong> {base_experience}
                 </PokemonBio.Item>
               </PokemonBio.Container>
-              <button
-                type="button"
-                name="add-to-pokeball"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-6"
-                onClick={() =>
-                  addToPokeball({
-                    id,
-                    name,
-                  })
-                }
-              >
-                Save to my pokeball
-              </button>
+              <Button.SwitchPokeballButton
+                pokemon={{ id, name }}
+                addToPokeballText="Save to pokeball"
+                openPokeballText="See pokeball"
+              />
             </div>
             <div>
               <img

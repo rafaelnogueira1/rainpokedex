@@ -1,4 +1,4 @@
-import { Filter } from "@components/Filters";
+import { Filter } from "@/components/Filters";
 
 interface Item {
   name: string;

@@ -2,12 +2,6 @@ import { createContext, useMemo, ReactNode, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "@/hooks";
 
-// interface User {
-//   id: string;
-//   name: string;
-//   email: string;
-// }
-
 interface User {
   email: string;
   password: string;

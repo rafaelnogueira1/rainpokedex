@@ -1,6 +1,6 @@
 import { usePokeball } from "@/hooks";
-import { Header } from "@components/Header";
-import { ListCards } from "@components/ListCards";
+import { Header } from "@/components/Header";
+import { ListCards } from "@/components/ListCards";
 
 function Pokeball() {
   const { pokeball, removeFromPokeball } = usePokeball();
