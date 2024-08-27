@@ -11,30 +11,34 @@ function Sidebar() {
 
   const { onSelectType, onSelectAbility, onSelectGender } = usePokemon();
 
-  if (types && abilities && genders) {
-    return (
-      <aside className="flex flex-col gap-4 w-full mt-6 md:mt-0 lg:w-1/4 md:w-1/3">
-        <Search />
-        <div className="flex flex-col gap-4 p-4 border border-solid border-gray-200 rounded-3xl">
+  return (
+    <aside className="flex flex-col gap-4 w-full mt-6 md:mt-0 xl:w-[330px] md:w-1/3">
+      <Search />
+      <div className="flex flex-col gap-4 p-4 border border-solid border-gray-200 rounded-3xl">
+        {types && (
           <FilterSidebar
             name="Filter by type"
             data={types}
             onClick={onSelectType}
           />
+        )}
+        {abilities && (
           <FilterSidebar
             name="Filter by ability"
             data={abilities}
             onClick={onSelectAbility}
           />
+        )}
+        {genders && (
           <FilterSidebar
             name="Filter by gender"
             data={genders}
             onClick={onSelectGender}
           />
-        </div>
-      </aside>
-    );
-  }
+        )}
+      </div>
+    </aside>
+  );
 }
 
 export default Sidebar;

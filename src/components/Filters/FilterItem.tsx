@@ -1,23 +1,32 @@
+import { forwardRef } from "react";
+
 interface FilterItemProps {
-  name: string;
+  value: string;
   onClick: (name: string) => void;
 }
 
-function FilterItem({ name, onClick }: FilterItemProps) {
-  return (
-    <label className="text-md flex gap-1 capitalize items-center">
-      <input
-        type="checkbox"
-        name={name}
-        className="w-4 h-4"
-        value={name}
-        onClick={() => {
-          onClick(name);
-        }}
-      />
-      {name}
-    </label>
-  );
-}
+const FilterItem = forwardRef<HTMLInputElement, FilterItemProps>(
+  ({ value, onClick }, ref) => {
+    return (
+      <label
+        htmlFor={value}
+        className="text-md flex gap-1 capitalize items-center"
+      >
+        <input
+          id={value}
+          type="radio"
+          name="filter"
+          className="w-4 h-4"
+          value={value}
+          onChange={() => {
+            onClick(value);
+          }}
+          ref={ref}
+        />
+        {value}
+      </label>
+    );
+  }
+);
 
 export default FilterItem;

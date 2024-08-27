@@ -4,6 +4,7 @@ import { Pokemon } from "@/services/pokemon";
 
 interface PokemonContextProps {
   pokemonsList: Pokemon[];
+  getPokemons: () => void;
   onSelectType: (t: string) => void;
   onSelectAbility: (a: string) => void;
   onSelectGender: (a: string) => void;
@@ -48,6 +49,7 @@ export const PokemonProvider = ({
 
   const value = {
     pokemonsList,
+    getPokemons,
     onSelectType,
     onSelectAbility,
     onSelectGender,
