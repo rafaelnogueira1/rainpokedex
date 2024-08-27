@@ -1,6 +1,7 @@
 import { createContext, useMemo, ReactNode, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "@/hooks";
+import { useToast } from "@/components/ui/use-toast";
 
 interface User {
   id?: string;
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
   const [user, setUser] = useLocalStorage<User | null>("user", null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const register = useCallback(
     async (data: User) => {
@@ -38,7 +40,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       );
 
       if (hasUserExists) {
-        return console.info("User already exists");
+        toast({
+          title: "Register Error",
+          description: "User already exists",
+          variant: "destructive",
+        });
+
+        return;
       }
 
       const newuser = { ...data, id: crypto.randomUUID() };
@@ -46,7 +54,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setRegisteredUsers([...registeredUsers, newuser]);
       navigate("/login", { replace: true });
     },
-    [navigate, setRegisteredUsers, registeredUsers]
+    [navigate, setRegisteredUsers, registeredUsers, toast]
   );
 
   const login = useCallback(
@@ -56,18 +64,29 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       );
 
       if (!hasUserExists) {
-        return console.info("User not found");
+        toast({
+          title: "Login Error",
+          description: "User not found",
+          variant: "destructive",
+        });
+
+        return;
       }
 
       if (data.password !== hasUserExists.password) {
-        return console.info("Invalid credentials");
+        toast({
+          title: "Login Error",
+          description: "Invalid credentials",
+          variant: "destructive",
+        });
+
+        return;
       }
 
       setUser(hasUserExists);
-      // setUser(data);
       navigate("/");
     },
-    [navigate, setUser, registeredUsers]
+    [navigate, setUser, registeredUsers, toast]
   );
 
   const logout = useCallback(() => {
