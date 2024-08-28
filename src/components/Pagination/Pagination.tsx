@@ -51,7 +51,7 @@ function Pagination({ onChange, count }: PaginationProps) {
 
   return (
     <PaginationRoot className="mt-10">
-      <PaginationContent className="w-[800px] flex-wrap justify-center">
+      <PaginationContent className="flex-wrap justify-center">
         <PaginationItem>
           {currentPage !== 1 && (
             <PaginationPrevious

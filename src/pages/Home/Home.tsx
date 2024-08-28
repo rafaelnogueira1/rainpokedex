@@ -16,7 +16,7 @@ function Home() {
   if (data?.pokemons) {
     return (
       <main className="lg:max-w-[1200px] mx-auto md:flex justify-between p-4 gap-8">
-        <div className="xl:w-[800px] lg:w-[600px] md:w-[400px]">
+        <div className="xl:w-full lg:w-[600px] md:w-[400px]">
           {!data?.pokemons.length ? (
             <div className="w-full text-center mt-10">No pokemons found</div>
           ) : (
@@ -26,10 +26,10 @@ function Home() {
                   <ListCards.Card key={pokemon.id}>
                     <ListCards.Image {...pokemon} />
                     <ListCards.Description {...pokemon} />
-                    <div className="flex flex-col md:flex-row items-center gap-2">
+                    <div className="flex flex-col lg:flex-row items-center gap-2">
                       <Link
                         to={`/details/${pokemon.id}`}
-                        className="text-blue-800 underline bg-white hover:text-blue-500 hover:bg-blue-100 hover:no-underline focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:mt-6"
+                        className="text-blue-800 underline bg-white hover:text-blue-500 hover:bg-blue-100 hover:no-underline focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center lg:mt-6"
                       >
                         Details
                       </Link>
