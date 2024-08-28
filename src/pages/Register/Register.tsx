@@ -58,7 +58,7 @@ function Register() {
               className="text-md bg-blue-700 text-white p-2 rounded-full"
               onClick={handleSubmit}
             >
-              Login
+              Register
             </button>
           </form>
           <div className="text-center mt-6 underline">

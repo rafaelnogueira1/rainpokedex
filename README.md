@@ -2,6 +2,8 @@
 
 This project was developed as part of a technical challenge for a company. The application is built using **ReactJS** and leverages the **PokeAPI** to provide data about Pokémon.
 
+You can access the project at [https://rainpokedex.vercel.app/](https://rainpokedex.vercel.app/).
+
 ## How to Use
 
 To run the project, you need to have Node version >= 18 installed. Follow the steps below to set up and start the application:
