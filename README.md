@@ -30,6 +30,7 @@ To run the project, you need to have Node version >= 18 installed. Follow the st
 4. The access link for the project will be displayed in the terminal after successful execution 🚀.
 
 Since it doesn't contain any sensitive information, the .env file is already included in the project with the PokeAPI URL.
+If the .env file is not present after downloading, create a `.env` file in the root folder of the project and include the following line: `VITE_API_URL=https://pokeapi.co/api/v2`.
 
 ## Features
 
