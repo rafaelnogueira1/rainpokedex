@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { PokemonContext } from "@/context";
+import { usePokemomStore } from "@/store/usePokemonStore";
+import { useStore } from "zustand";
 
-export const usePokemon = () => {
-  const context = useContext(PokemonContext);
+export function usePokemon() {
+  const cartManage = useStore(usePokemomStore, (state) => state);
 
-  if (!context) {
-    throw new Error("usePokemon must be used within PokemonProvider");
+  if (!cartManage) {
+    throw new Error("usePokemon must be used within usePokemomStore");
   }
 
-  return context;
-};
+  return cartManage;
+}

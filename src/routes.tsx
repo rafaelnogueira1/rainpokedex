@@ -5,8 +5,8 @@ import { Details } from "@/pages/Details";
 import { Pokeball } from "@/pages/Pokeball";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Root from "./pages/Root/Root";
-import Register from "./pages/Register/Register";
 import { ErrorPage } from "./pages/ErrorPage";
+import { Register } from "./pages/Register";
 
 function Router() {
   return (

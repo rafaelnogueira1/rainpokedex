@@ -14,8 +14,8 @@ function Image({ id, name }: CardProps) {
       <img
         src={`/assets/images/pokemon/${id}.png`}
         alt={name}
-        width={90}
-        height={90}
+        width={150}
+        height={150}
       />
     </Link>
   );

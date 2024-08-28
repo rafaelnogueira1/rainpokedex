@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type AsyncFuntion<T, P extends unknown[]> = (...args: P) => Promise<T>;
 
@@ -16,26 +16,24 @@ export const useAsyncFunction = <T, P extends unknown[]>(
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState("");
 
-  useEffect(() => {
-    const executeAsyncFunction = async () => {
-      setIsLoading(true);
-      try {
-        const response = await asyncFunction(
-          ...(params || ([] as unknown as P))
-        );
+  const executeAsyncFunction = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await asyncFunction(...(params || ([] as unknown as P)));
 
-        setData(response);
-      } catch (error) {
-        if (error instanceof Error) {
-          setHasError(error.message || "An error occurred");
-        }
-      } finally {
-        setIsLoading(false);
+      setData(response);
+    } catch (error) {
+      if (error instanceof Error) {
+        setHasError(error.message || "An error occurred");
       }
-    };
+    } finally {
+      setIsLoading(false);
+    }
+  }, [asyncFunction, JSON.stringify(params)]);
 
+  useEffect(() => {
     executeAsyncFunction();
-  }, [asyncFunction]);
+  }, [executeAsyncFunction]);
 
   return { data, isLoading, hasError };
 };
