@@ -8,6 +8,16 @@ import { pokemon } from "@/services";
 import { Button } from "@/components/Button";
 import { NotFound } from "@/components/NotFound";
 import { Loading } from "@/components/Loading";
+import { Progress } from "@/components/ui/progress";
+
+const progressColors: { [key: number]: string } = {
+  1: "bg-progress-1",
+  2: "bg-progress-2",
+  3: "bg-progress-3",
+  4: "bg-progress-4",
+  5: "bg-progress-5",
+  6: "bg-progress-6",
+};
 
 function Details() {
   const { id } = useParams() as { id: string };
@@ -110,11 +120,16 @@ function Details() {
 
             <Characteristics.Container>
               <Characteristics.Title>Stats</Characteristics.Title>
-              <ul>
-                {stats?.map((stat) => (
-                  <li key={stat.stat.name} className="text-md">
-                    <span className="uppercase">{stat.stat.name}:</span>{" "}
+              <ul className="flex flex-col gap-3">
+                {stats?.map((stat, index) => (
+                  <li key={stat.stat.name} className="text-md text-gray-800">
+                    <strong className="uppercase">{stat.stat.name}:</strong>{" "}
                     {stat.base_stat}
+                    <Progress
+                      value={stat.base_stat}
+                      indicatorColor={progressColors[index + 1]}
+                      className="bg-gray-200"
+                    />
                   </li>
                 ))}
               </ul>

@@ -24,6 +24,12 @@ module.exports = {
       },
       colors: {
         navigation: "#3B4CCA",
+        "progress-1": "#65a30d",
+        "progress-2": "#dc2626",
+        "progress-3": "#2563eb",
+        "progress-4": "#0891b2",
+        "progress-5": "#4f46e5",
+        "progress-6": "#7c3aed",
       },
       keyframes: {
         "accordion-down": {

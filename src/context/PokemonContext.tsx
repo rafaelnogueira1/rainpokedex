@@ -20,7 +20,6 @@ export const PokemonProvider = ({
   const [pokemonsList, setPokemonsList] = useState<ListReturn>(
     {} as ListReturn
   );
-
   const getPokemons = useCallback(async (limit = 12, offset = 0) => {
     const response = await pokemon.listPokemons(limit, offset);
     setPokemonsList(response);

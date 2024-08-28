@@ -6,6 +6,7 @@ import { Pokeball } from "@/pages/Pokeball";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Root from "./pages/Root/Root";
 import Register from "./pages/Register/Register";
+import { ErrorPage } from "./pages/ErrorPage";
 
 function Router() {
   return (
@@ -20,7 +21,6 @@ function Router() {
               <Home />
             </ProtectedRoute>
           }
-          index
         />
         <Route
           path="/details/:id"
@@ -35,6 +35,14 @@ function Router() {
           element={
             <ProtectedRoute>
               <Pokeball />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <ProtectedRoute>
+              <ErrorPage />
             </ProtectedRoute>
           }
         />
