@@ -12,7 +12,7 @@ function Sidebar() {
   const { onSelectType, onSelectAbility, onSelectGender } = usePokemon();
 
   return (
-    <aside className="flex flex-col gap-4 mt-6 md:mt-0 md:w-[300px] lg:w-[500px]">
+    <aside className="flex flex-col gap-4 mt-6 md:mt-0 md:w-[300px] lg:w-[350px]">
       <Search />
       <div className="flex flex-col gap-4 p-4 border border-solid border-gray-200 rounded-3xl">
         {types && (

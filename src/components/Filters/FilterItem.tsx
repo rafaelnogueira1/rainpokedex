@@ -7,6 +7,13 @@ interface FilterItemProps {
 
 const FilterItem = forwardRef<HTMLInputElement, FilterItemProps>(
   ({ value, onClick }, ref) => {
+    const handleClickScroll = () => {
+      const element = document.getElementById("pokemons");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
     return (
       <label
         htmlFor={value}
@@ -20,6 +27,7 @@ const FilterItem = forwardRef<HTMLInputElement, FilterItemProps>(
           value={value}
           onChange={() => {
             onClick(value);
+            handleClickScroll();
           }}
           ref={ref}
         />

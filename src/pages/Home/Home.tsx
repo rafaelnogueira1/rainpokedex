@@ -15,8 +15,8 @@ function Home() {
 
   if (data?.pokemons) {
     return (
-      <main className="lg:max-w-[1200px] mx-auto md:flex justify-between p-4 gap-8">
-        <div className="xl:w-full lg:w-[600px] md:w-[400px]">
+      <main className="lg:max-w-[1200px] mx-auto flex flex-col-reverse md:flex-row justify-between p-4 gap-8">
+        <div className="xl:w-2/3 lg:w-[600px] md:w-[400px]" id="pokemons">
           {!data?.pokemons.length ? (
             <div className="w-full text-center mt-10">No pokemons found</div>
           ) : (
