@@ -14,7 +14,7 @@ To run the project, you need to have Node version >= 18 installed. Follow the st
    git clone https://github.com/rafaelnogueira1/rainpokedex.git
    ```
 
-2. Navigate to the project folder and install the dependencies using your preferred package manager. We recommend using **pnpm**:
+2. Navigate to the project folder and install the dependencies using your preferred package manager. Recommend using **pnpm**:
 
    ```bash
    cd rainpokedex
@@ -28,6 +28,8 @@ To run the project, you need to have Node version >= 18 installed. Follow the st
    ```
 
 4. The access link for the project will be displayed in the terminal after successful execution 🚀.
+
+Since it doesn't contain any sensitive information, the .env file is already included in the project with the PokeAPI URL.
 
 ## Features
 
